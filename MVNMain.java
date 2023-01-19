@@ -57,7 +57,7 @@ public class MVNMain {
 
 					break;
 				case 4:
-//				MVNMain.insert();
+				MVNMain.insert();
 
 					break;
 				case 5:
@@ -170,27 +170,13 @@ public class MVNMain {
 			final String pass = "root";
 			Connection conn = null;
 			try {
-//						 +"tld varchar(20),"
-//+"cca2 varchar(10),"
-//+"ccn3 Integer,"
-//+"cca3 varchar (20),"
-//+"cioc varchar(20),"
-//+"status varchar(20),"
-//+"capital varchar(20),"
-//+"altSpellings varchar(20),"
-//+"region varchar(20),"
-//+"subregion varchar(20),"
-//+"languages varchar(20),"
-//+"area double,"
-//+"flag varchar(20),"
-//+"population Integer,"
-//+"fifa varchar(20),"
-//+"timezones varchar(20),"
-//+"continents varchar(20),"
-//+"startOfWeek varchar(20))");
+
 				String sql = "insert into FirstTable (tld,cca2,ccn3,cca3,cioc,status,capital,altSpellings,region,subregion,languages,area,flag,population,fifa,timezones,continents,startOfWeek)values ('"
-						+ RAC.getWeb_pages()[0] + "','" + RAC.getState_province() + "','" + RAC.getAlpha_two_code()
-						+ "','" + RAC.getName() + "','" + RAC.getCountry() + "','" + RAC.getDomains()[0] + "')";
+						+ RAC.getTld() + "','"+ RAC.getCca2() + "','" + RAC.getCcn3() + "','" + RAC.getCca3()+ "','" + RAC.getCioc()+ "','" 
+						+ RAC.getStatus() + "','" + RAC.getCapital()+ "','" + RAC.getAltSpellings()+ "','" + RAC.getRegion() 
+						+ "','" + RAC.getSubregion()+ "','" + RAC.getLanguages()+ "','" + RAC.getArea()+ "','" + RAC.getFlag()
+						+ "','" + RAC.getPopulation()+ "','" + RAC.getFifa()+ "','" + RAC.getTimezones()+ "','" + RAC.getContinents()
+						+ "','" + RAC.getStartOfWeek()+ "')";
 
 				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -214,131 +200,155 @@ public class MVNMain {
 
 		}
 	}
-//			public static void readFromTable(){
-//
-//				final String url = "jdbc:mysql://localhost:3306/Maven2";
-//				   final String user = "root";
-//				   final String pass = "root";
-//				   
-//				   
-//				   
-//				  String QUERY = "SELECT * FROM FaizaMVNDB";
-//
-//				      Connection conn=null;
-//				      
-//				 try {
-//					 conn = DriverManager.getConnection(url, user, pass);
-//				 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//		         Statement stmt = conn.createStatement();
-//			     DriverManager.registerDriver(driver);
-//			     ResultSet rs=stmt.executeQuery(QUERY);
-//					 while(rs.next()) {
-//						
-//						int id=rs.getInt("id");
-//						String web_pages=rs.getString("web_pages");
-//						String state_province=rs.getString("state_province");
-//						String alpha_two_code=rs.getString("alpha_two_code");
-//						String name=rs.getString("name");
-//						String country=rs.getString("country");
-//						String domains=rs.getString("domains");
-//						
-//						
-//						
-//					     System.out.println("id :" + id);
-//					     System.out.println("web_pages :" +web_pages);
-//					     System.out.println("state_province" +state_province);
-//					     System.out.println("alpha_two_code" +alpha_two_code);
-//					     System.out.println("name" +name);
-//					     System.out.println("country"+country);
-//					     System.out.println("domains"+domains);
-//					     System.out.println("===========================================================");
-//					   
-//					 }
-//					 conn.close() ;
-//				 }  catch (Exception ex) {
-//			           
-//			            System.err.println(ex);
-//		   }
-//		    }
-//			
-//			public static void updateById(){
-//				
-//				final String url = "jdbc:mysql://localhost:3306/Maven2";
-//
-//				 String user = "root";
-//				 String pass = "root";
-//				 Connection conn = null;
-//
-//				 try {
-//				 Scanner scanner = new Scanner(System.in);
-//
-//				  	System.out.println ("input id you want to update");
-//				      Integer id=scanner.nextInt();
-//				      String sql = "update FaizaMVNDB set alpha_two_code='MM' where id="+id;
-//						 
-//				      
-//				 
-//					 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//					   
-//				     DriverManager.registerDriver(driver);
-//
-//				     conn = DriverManager.getConnection(url, user,
-//				             pass);
-//
-//				     Statement st = conn.createStatement();
-//
-//				     int m = st.executeUpdate(sql);
-//				     if (m >=0)
-//				         System.out.println("update is successful of " +id);
-//				     else
-//				         System.out.println("failed");
-//				     conn.close() ;
-//				 }
-//
-//					  catch (Exception ex) {
-//			           
-//			            System.err.println(ex);
-//		   }
-//			    }
-//			
-//			public static void deleteById() {
-//				final String url = "jdbc:mysql://localhost:3306/Maven2";
-//
-//				 String user = "root";
-//				 String pass = "root";
-//				 try {
-//				 Scanner scanner = new Scanner(System.in);
-//
-//				  	System.out.println ("inter id uou want to delete");
-//				      Integer id=scanner.nextInt();
-//				      String sql = "delete from  FaizaMVNDB where id="+id;
-//						 
-//						 Connection conn = null;
-//				      
-//				 
-//					 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//					   
-//				     DriverManager.registerDriver(driver);
-//
-//				     conn = DriverManager.getConnection(url, user,
-//				             pass);
-//
-//				     Statement st = conn.createStatement();
-//
-//				     int m = st.executeUpdate(sql);
-//				     if (m >=0)
-//				         System.out.println("deleted is successful of " +id);
-//				     else
-//				         System.out.println("failed");
-//
-//				     conn.close();
-//				 }
-//
-//					  catch (Exception ex) {
-//			           
-//			            System.err.println(ex);
-//		   }
-//			    }
-//			
+			public static void readFromTable(){
+
+				final String url = "jdbc:mysql://localhost:3306/Maven2";
+				   final String user = "root";
+				   final String pass = "root";
+				   
+				   
+				   
+				  String QUERY = "SELECT * FROM FaizaMVNDB";
+
+				      Connection conn=null;
+				      
+				 try {
+					 conn = DriverManager.getConnection(url, user, pass);
+				 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+		         Statement stmt = conn.createStatement();
+			     DriverManager.registerDriver(driver);
+			     ResultSet rs=stmt.executeQuery(QUERY);
+					 while(rs.next()) {
+
+						int id=rs.getInt("id");
+						String tld=rs.getString("tld");
+						String cca2=rs.getString("cca2");
+						int ccn3=rs.getInt("ccn3");
+						String cca3=rs.getString("cca3");
+						String cioc=rs.getString("cioc");
+						String status=rs.getString("status");
+						String capital=rs.getString("capital");
+						String altSpellings=rs.getString("altSpellings");
+						String region=rs.getString("region");
+						String subregion=rs.getString("subregion");
+						String languages=rs.getString("languages");
+						double area=rs.getDouble("area");
+						String flag=rs.getString("flag");
+						int population=rs.getInt("population");
+						String fifa=rs.getString("fifa");
+						String timezones=rs.getString("timezones");
+						String continents=rs.getString("continents");
+						String startOfWeek=rs.getString("startOfWeek");
+						
+						
+						
+					     System.out.println("id :" + id);
+					     System.out.println("tld :" + tld);
+					     System.out.println("cca2 :" +cca2);
+					     System.out.println("ccn3" +ccn3);
+					     System.out.println("cca3" +cca3);
+					     System.out.println("cioc" +cioc);
+					     System.out.println("status" +status);
+					     System.out.println("capital" +capital);
+					     System.out.println("altSpellings"+altSpellings);
+					     System.out.println("region"+region);
+					     System.out.println("subregion"+subregion);
+					     System.out.println("languages"+languages);
+					     System.out.println("area"+area);
+					     System.out.println("flag"+flag);
+					     System.out.println("population"+population);
+					     System.out.println("fifa"+fifa);
+					     System.out.println("timezones"+timezones);
+					     System.out.println("continents"+continents);
+					     System.out.println("startOfWeek"+startOfWeek);
+					     System.out.println("===========================================================");
+					   
+					 }
+					 conn.close() ;
+				 }  catch (Exception ex) {
+			           
+			            System.err.println(ex);
+		   }
+		    }
+			
+			public static void updateById(){
+				
+				final String url = "jdbc:mysql://localhost:3306/Maven2";
+
+				 String user = "root";
+				 String pass = "root";
+				 Connection conn = null;
+
+				 try {
+				 Scanner scanner = new Scanner(System.in);
+
+				  	System.out.println ("input id you want to update");
+				      Integer id=scanner.nextInt();
+				      String sql = "update firsttable set cioc='GRN' where id="+id;
+						 
+				      
+				 
+					 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+					   
+				     DriverManager.registerDriver(driver);
+
+				     conn = DriverManager.getConnection(url, user,
+				             pass);
+
+				     Statement st = conn.createStatement();
+
+				     int m = st.executeUpdate(sql);
+				     if (m >=0)
+				         System.out.println("update is successful of " +id);
+				     else
+				         System.out.println("failed");
+				     conn.close() ;
+				 }
+
+					  catch (Exception ex) {
+			           
+			            System.err.println(ex);
+		   }
+			    }
+			
+			public static void deleteById() {
+				final String url = "jdbc:mysql://localhost:3306/Maven2";
+
+				 String user = "root";
+				 String pass = "root";
+				 try {
+				 Scanner scanner = new Scanner(System.in);
+
+				  	System.out.println ("inter id uou want to delete");
+				      Integer id=scanner.nextInt();
+				      String sql = "delete from  firsttable where id="+id;
+						 
+						 Connection conn = null;
+				      
+				 
+					 Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+					   
+				     DriverManager.registerDriver(driver);
+
+				     conn = DriverManager.getConnection(url, user,
+				             pass);
+
+				     Statement st = conn.createStatement();
+
+				     int m = st.executeUpdate(sql);
+				     if (m >=0)
+				         System.out.println("deleted is successful of " +id);
+				     else
+				         System.out.println("failed");
+
+				     conn.close();
+				 }
+
+					  catch (Exception ex) {
+			           
+			            System.err.println(ex);
+		   }
+			    }
+			
 
 }
