@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.lang.ClassNotFoundException;
-
 import com.google.gson.Gson;
 
 public class MVNMain {
@@ -40,7 +39,6 @@ public class MVNMain {
 				System.out.println(" *********************************************** ");
 				Scanner scanner = new Scanner(System.in);
 
-//		     boolean isExit = true;
 				int option = sc.nextInt();
 				switch (option) {
 
@@ -61,13 +59,13 @@ public class MVNMain {
 
 					break;
 				case 5:
-//				MVNMain.readFromTable();
+				MVNMain.readFromTable();
 					break;
 				case 6:
-//				MVNMain.updateById();
+				MVNMain.updateById();
 					break;
 				case 7:
-//				MVNMain.deleteById();
+				MVNMain.deleteById();
 					break;
 				}
 			}
@@ -97,14 +95,11 @@ public class MVNMain {
 		Gson gn = new Gson();
 		BasicClass[] useGson = gn.fromJson(response.body(), BasicClass[].class);
 		for (BasicClass RAC : useGson) {
-//					
-			System.out.println("tld" + RAC.getTld());
 			System.out.println("cca2" + RAC.getCca2());
 			System.out.println("ccn3" + RAC.getCcn3());
 			System.out.println("cca3" + RAC.getCca3());
 			System.out.println("cioc" + RAC.getCioc());
 			System.out.println("status" + RAC.getStatus());
-			System.out.println("capital" + RAC.getCapital());
 			System.out.println("altSpellings" + RAC.getAltSpellings());
 			System.out.println("region" + RAC.getRegion());
 			System.out.println("subregion" + RAC.getSubregion());
@@ -118,22 +113,21 @@ public class MVNMain {
 			System.out.println("startOfWeek" + RAC.getStartOfWeek());
 		}
 	}
-
 	public static void createTable() throws Exception {
 
-		final String url = "jdbc:mysql://localhost:3306/Maven2";
+		final String url = "jdbc:mysql://localhost:3306/maven2";
 
 		final String user = "root";
 		final String pass = "root";
 		Connection conn = null;
 		try {
 
-			String sql = ("CREATE TABLE FirstTable(" + "id int Primary Key AUTO_INCREMENT," + "tld varchar(20),"
-					+ "cca2 varchar(10)," + "ccn3 Integer," + "cca3 varchar (20)," + "cioc varchar(20),"
-					+ "status varchar(20)," + "capital varchar(20)," + "altSpellings varchar(20),"
-					+ "region varchar(20)," + "subregion varchar(20)," + "languages varchar(20)," + "area double,"
-					+ "flag varchar(20)," + "population Integer," + "fifa varchar(20)," + "timezones varchar(20),"
-					+ "continents varchar(20)," + "startOfWeek varchar(20))");
+			String sql = ("CREATE TABLE FirstTable(" + "id int Primary Key AUTO_INCREMENT," + "cca2 varchar(225)," + "ccn3 Integer," + "cca3 varchar (225)," + "cioc varchar(225),"
+					+ "status varchar(225)," + "altSpellings varchar(225),"
+					+ "region varchar(225)," + "subregion varchar(225)," + "languages varchar(225)," + "area double,"
+					+ "flag varchar(225)," + "population Integer," + "fifa varchar(225)," + "timezones varchar(225),"
+					+ "continents varchar(225)," + "startOfWeek varchar(225))");
+			
 			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
 			DriverManager.registerDriver(driver);
@@ -143,11 +137,11 @@ public class MVNMain {
 
 			int m = st.executeUpdate(sql);
 			if (m >= 0)
-				System.out.println("Created table in given database...");
+				{System.out.println("Created table in given database...");
 
-			else
+				}else {
 				System.out.println("failed to create");
-
+				}
 			conn.close();
 		} catch (Exception ex) {
 
@@ -170,13 +164,15 @@ public class MVNMain {
 			final String pass = "root";
 			Connection conn = null;
 			try {
-
-				String sql = "insert into FirstTable (tld,cca2,ccn3,cca3,cioc,status,capital,altSpellings,region,subregion,languages,area,flag,population,fifa,timezones,continents,startOfWeek)values ('"
-						+ RAC.getTld() + "','"+ RAC.getCca2() + "','" + RAC.getCcn3() + "','" + RAC.getCca3()+ "','" + RAC.getCioc()+ "','" 
-						+ RAC.getStatus() + "','" + RAC.getCapital()+ "','" + RAC.getAltSpellings()+ "','" + RAC.getRegion() 
+				
+			
+				String sql = "insert into firsttable (cca2,ccn3,cca3,cioc,status,capital,altSpellings,region,subregion,languages"
+						+ ",area,flag,population,fifa,timezones,continents,startOfWeek)values ('"
+						+ RAC.getCca2() + "','" + RAC.getCcn3() + "','" + RAC.getCca3()+ "','" + RAC.getCioc()+ "','" 
+						+ RAC.getStatus() + "','" + RAC.getAltSpellings()[0]+ "','" + RAC.getRegion() 
 						+ "','" + RAC.getSubregion()+ "','" + RAC.getLanguages()+ "','" + RAC.getArea()+ "','" + RAC.getFlag()
-						+ "','" + RAC.getPopulation()+ "','" + RAC.getFifa()+ "','" + RAC.getTimezones()+ "','" + RAC.getContinents()
-						+ "','" + RAC.getStartOfWeek()+ "')";
+						+ "','" + RAC.getPopulation()+ "','" + RAC.getFifa()+ "','" + RAC.getTimezones()[0]+ "','" + RAC.getContinents()[0]
+								+ "','" + RAC.getStartOfWeek()+"')";
 
 				Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
@@ -184,22 +180,24 @@ public class MVNMain {
 
 				conn = DriverManager.getConnection(url, user, pass);
 				Statement st = conn.createStatement();
-
+		
 				int m = st.executeUpdate(sql);
-				if (m >= 0)
-					System.out.println("inserted in given database..." + sql);
-
-				else
+				if (m >= 0) 
+					{System.out.println("inserted in given database..." + sql);
+					}
+				else {
 					System.out.println("failed");
-
+				}
+				
 				conn.close();
-			} catch (Exception ex) {
+			}catch (Exception ex) {
 
 				System.err.println(ex);
 			}
 
 		}
 	}
+	
 			public static void readFromTable(){
 
 				final String url = "jdbc:mysql://localhost:3306/Maven2";
@@ -208,7 +206,7 @@ public class MVNMain {
 				   
 				   
 				   
-				  String QUERY = "SELECT * FROM FaizaMVNDB";
+				  String QUERY = "SELECT * FROM FirstTable";
 
 				      Connection conn=null;
 				      
@@ -221,13 +219,11 @@ public class MVNMain {
 					 while(rs.next()) {
 
 						int id=rs.getInt("id");
-						String tld=rs.getString("tld");
 						String cca2=rs.getString("cca2");
 						int ccn3=rs.getInt("ccn3");
 						String cca3=rs.getString("cca3");
 						String cioc=rs.getString("cioc");
 						String status=rs.getString("status");
-						String capital=rs.getString("capital");
 						String altSpellings=rs.getString("altSpellings");
 						String region=rs.getString("region");
 						String subregion=rs.getString("subregion");
@@ -243,13 +239,11 @@ public class MVNMain {
 						
 						
 					     System.out.println("id :" + id);
-					     System.out.println("tld :" + tld);
 					     System.out.println("cca2 :" +cca2);
 					     System.out.println("ccn3" +ccn3);
 					     System.out.println("cca3" +cca3);
 					     System.out.println("cioc" +cioc);
 					     System.out.println("status" +status);
-					     System.out.println("capital" +capital);
 					     System.out.println("altSpellings"+altSpellings);
 					     System.out.println("region"+region);
 					     System.out.println("subregion"+subregion);
@@ -299,10 +293,10 @@ public class MVNMain {
 
 				     int m = st.executeUpdate(sql);
 				     if (m >=0)
-				         System.out.println("update is successful of " +id);
-				     else
+				         {System.out.println("update is successful of " +id);
+				         } else {
 				         System.out.println("failed");
-				     conn.close() ;
+				     }conn.close() ;
 				 }
 
 					  catch (Exception ex) {

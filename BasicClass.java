@@ -1,7 +1,7 @@
 
 public class BasicClass {
 	private name Name;
-	private String tld[];
+	private String[] tld;
 	private String cca2;
 	private int ccn3;
 	private String cca3;
@@ -15,7 +15,7 @@ public class BasicClass {
 	private String altSpellings[];
 	private String region;
 	private String subregion;
-	private String languages;
+	private languages Languages;
 	private translations Translations;
 	private double latlng[];
 	private boolean landlocked;
@@ -152,15 +152,15 @@ public class BasicClass {
 	public void setSubregion(String subregion) {
 		this.subregion = subregion;
 	}
-
-	public String getLanguages() {
-		return languages;
+	public languages getLanguages() {
+		return Languages;
 	}
 
-	public void setLanguages(String languages) {
-		this.languages = languages;
+	public void setLanguages(languages languages) {
+		Languages = languages;
 	}
 
+	
 	public translations getTranslations() {
 		return Translations;
 	}
